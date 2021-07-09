@@ -5,7 +5,7 @@
     android:id="@+id/item_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainHostActivity"
+    tools:context=".presentation.screens.MainHostActivity"
     tools:ignore="MergeRootFrame">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -46,7 +46,7 @@
             android:layout_height="match_parent"
             android:padding="16dp"
             android:textIsSelectable="true"
-            tools:context="dev.myanes.marvelheroes.HeroDetailFragment" />
+            tools:context="dev.myanes.marvelheroes.presentation.screens.herodetail.HeroDetailFragment" />
 
     </androidx.core.widget.NestedScrollView>
 

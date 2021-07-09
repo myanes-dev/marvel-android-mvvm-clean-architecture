@@ -7,13 +7,13 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/item_list"
+        android:id="@+id/recycler_view"
         android:name="dev.myanes.marvelheroes.ItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context="dev.myanes.marvelheroes.MainHostActivity"
+        tools:context="dev.myanes.marvelheroes.presentation.screens.MainHostActivity"
         tools:listitem="@layout/item_list_hero" />
 </androidx.constraintlayout.widget.ConstraintLayout>

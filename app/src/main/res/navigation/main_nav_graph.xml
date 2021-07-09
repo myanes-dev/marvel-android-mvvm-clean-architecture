@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/item_list_fragment"
-        android:name="dev.myanes.marvelheroes.HeroListFragment"
+        android:name="dev.myanes.marvelheroes.presentation.screens.herolist.HeroListFragment"
         android:label="ItemListFragment"
         tools:layout="@layout/fragment_hero_list">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/movie_detail_fragment"
-        android:name="dev.myanes.marvelheroes.HeroDetailFragment"
+        android:name="dev.myanes.marvelheroes.presentation.screens.herodetail.HeroDetailFragment"
         android:label="item_detail"
         tools:layout="@layout/fragment_hero_detail">
         <argument

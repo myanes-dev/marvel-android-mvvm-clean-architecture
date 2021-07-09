@@ -1,4 +1,4 @@
-package dev.myanes.marvelheroes
+package dev.myanes.marvelheroes.presentation.screens
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import dev.myanes.marvelheroes.R
 import dev.myanes.marvelheroes.databinding.ActivityMainBinding
 
 class MainHostActivity : AppCompatActivity() {

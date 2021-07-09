@@ -1,4 +1,4 @@
-package dev.myanes.marvelheroes
+package dev.myanes.marvelheroes.presentation.screens.herodetail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

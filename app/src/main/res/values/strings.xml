@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">marvel-heroes</string>
+    <string name="title_item_detail">Item Detail</string>
+</resources>

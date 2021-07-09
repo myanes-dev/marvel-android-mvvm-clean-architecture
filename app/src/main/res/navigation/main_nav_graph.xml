@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/item_list_fragment">
+
+    <fragment
+        android:id="@+id/item_list_fragment"
+        android:name="dev.myanes.marvelheroes.HeroListFragment"
+        android:label="ItemListFragment"
+        tools:layout="@layout/fragment_hero_list">
+        <action
+            android:id="@+id/show_hero_detail"
+            app:destination="@id/movie_detail_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_detail_fragment"
+        android:name="dev.myanes.marvelheroes.HeroDetailFragment"
+        android:label="item_detail"
+        tools:layout="@layout/fragment_hero_detail">
+        <argument
+            android:name="item_id"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -5,4 +5,15 @@
     <dimen name="app_bar_height">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="container_margin">8dp</dimen>
+
+    <dimen name="font_size_XS">12sp</dimen>
+    <dimen name="font_size_S">14sp</dimen>
+    <dimen name="font_size_M">16sp</dimen>
+    <dimen name="font_size_L">18sp</dimen>
+    <dimen name="font_size_XL">24sp</dimen>
+
+    <dimen name="MARGIN_XS">4dp</dimen>
+    <dimen name="MARGIN_S">8dp</dimen>
+    <dimen name="MARGIN_M">10dp</dimen>
+    <dimen name="MARGIN_L">14dp</dimen>
 </resources>

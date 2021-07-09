@@ -23,11 +23,10 @@ class HeroListAdapter(
 
         fun bind(hero: Hero) {
             with(itemBinding) {
-                tvID.text = hero.id
                 tvName.text = hero.name
             }
             itemView.setOnClickListener {
-                listener?.onHeroItemClick(hero)
+                listener.onHeroItemClick(hero)
             }
         }
     }

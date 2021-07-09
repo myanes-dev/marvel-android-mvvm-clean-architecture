@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import dev.myanes.marvelheroes.R
 import dev.myanes.marvelheroes.databinding.FragmentHeroListBinding
-import dev.myanes.marvelheroes.domain.models.FakeHeros
 import dev.myanes.marvelheroes.domain.models.Hero
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
+
+    //ViewModel
+    private val heroListViewModel: HeroListViewModel by viewModel()
 
     // Views
     private var _binding: FragmentHeroListBinding? = null
@@ -32,14 +35,30 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        loadObservers()
         initComponents()
         loadData()
+    }
 
+    private fun loadObservers() {
+        heroListViewModel.loading.observe(viewLifecycleOwner) {
+            when (it) {
+                true -> binding.pbLoarder.visibility = View.VISIBLE
+                false -> binding.pbLoarder.visibility = View.GONE
+            }
+        }
+
+        heroListViewModel.heroList.observe(viewLifecycleOwner) {
+            updateData(it)
+        }
     }
 
     private fun loadData() {
-        heroListAdapter.updateData(FakeHeros.LIST_ITEMS)
+        heroListViewModel.loadHeroes()
+    }
+
+    private fun updateData(list: List<Hero>) {
+        heroListAdapter.updateData(list)
     }
 
     private fun initComponents() {
@@ -58,6 +77,5 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

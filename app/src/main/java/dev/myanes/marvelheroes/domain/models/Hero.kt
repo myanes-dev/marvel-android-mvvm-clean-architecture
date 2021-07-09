@@ -8,7 +8,7 @@ data class Hero(
     val description: String?
 )
 
-object FakeHeros {
+object FakeHeroes {
 
     val LIST_ITEMS: List<Hero> = buildFakeList()
 

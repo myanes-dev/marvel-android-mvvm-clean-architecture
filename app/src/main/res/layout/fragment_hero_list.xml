@@ -11,9 +11,17 @@
         android:name="dev.myanes.marvelheroes.ItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:context="dev.myanes.marvelheroes.presentation.screens.MainHostActivity"
         tools:listitem="@layout/item_list_hero" />
+
+    <ProgressBar
+        android:id="@+id/pbLoarder"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

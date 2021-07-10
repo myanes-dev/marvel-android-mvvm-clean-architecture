@@ -4,14 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.myanes.marvelheroes.domain.Result
 import dev.myanes.marvelheroes.domain.models.FakeHeroes
 import dev.myanes.marvelheroes.domain.models.Hero
+import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HeroListViewModel() : ViewModel() {
+class HeroListViewModel(
+    private val getHeroesUseCase: GetHeroesUseCase
+) : ViewModel() {
 
     private val _loading = MutableLiveData<Boolean>().apply { false }
     val loading: LiveData<Boolean> get() = _loading
@@ -23,10 +27,15 @@ class HeroListViewModel() : ViewModel() {
     fun loadHeroes() {
         viewModelScope.launch(Dispatchers.Main) {
             if (_heroList.value == null) _loading.value = true
-            withContext(Dispatchers.IO) {
-                delay(2000)
-                _heroList.postValue(FakeHeroes.LIST_ITEMS)
-            }
+            getHeroesUseCase().fold(
+                error = {
+                    when (it){
+                        is Result.Error.Friendly -> TODO()
+                        Result.Error.UnKnown -> TODO()
+                    }
+                },
+                success = { _heroList.value = it }
+            )
             _loading.value = false
         }
     }

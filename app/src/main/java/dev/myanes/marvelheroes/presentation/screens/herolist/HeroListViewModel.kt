@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.myanes.marvelheroes.domain.Result
-import dev.myanes.marvelheroes.domain.models.FakeHeroes
 import dev.myanes.marvelheroes.domain.models.Hero
 import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HeroListViewModel(
     private val getHeroesUseCase: GetHeroesUseCase

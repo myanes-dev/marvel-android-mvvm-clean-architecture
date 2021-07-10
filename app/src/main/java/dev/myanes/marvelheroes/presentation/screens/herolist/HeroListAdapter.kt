@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.myanes.marvelheroes.databinding.ItemListHeroBinding
 import dev.myanes.marvelheroes.domain.models.Hero
+import dev.myanes.marvelheroes.presentation.utils.loadURL
 
 class HeroListAdapter(
     private val listener: HeroListListener
@@ -20,10 +21,10 @@ class HeroListAdapter(
     inner class ItemViewHolder(
         private val itemBinding: ItemListHeroBinding
     ) : RecyclerView.ViewHolder(itemBinding.root) {
-
         fun bind(hero: Hero) {
             with(itemBinding) {
                 tvName.text = hero.name
+                ivImage.loadURL(hero.imageURL)
             }
             itemView.setOnClickListener {
                 listener.onHeroItemClick(hero)

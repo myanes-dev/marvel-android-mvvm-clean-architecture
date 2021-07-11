@@ -52,9 +52,42 @@
             <ProgressBar
                 android:id="@+id/pbLoader"
                 android:layout_width="64dp"
-                android:layout_margin="@dimen/MARGIN_L"
+                android:layout_height="64dp"
                 android:layout_gravity="center"
-                android:layout_height="64dp" />
+                android:layout_margin="@dimen/MARGIN_L" />
+
+            <TextView
+                android:id="@+id/tvNoResults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/MARGIN_L"
+                android:text="@string/no_results" />
+
+            <LinearLayout
+                android:id="@+id/llCounters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/MARGIN_L"
+                android:orientation="horizontal">
+
+                <include
+                    android:id="@+id/counterComics"
+                    layout="@layout/cv_resource_counter" />
+
+                <include
+                    android:id="@+id/counterSeries"
+                    layout="@layout/cv_resource_counter" />
+
+                <include
+                    android:id="@+id/counterStories"
+                    layout="@layout/cv_resource_counter" />
+
+                <include
+                    android:id="@+id/counterEvents"
+                    layout="@layout/cv_resource_counter" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDescription"
@@ -63,6 +96,7 @@
                 android:padding="@dimen/MARGIN_L"
                 android:textIsSelectable="true"
                 tools:text="Description" />
+
         </LinearLayout>
 
 

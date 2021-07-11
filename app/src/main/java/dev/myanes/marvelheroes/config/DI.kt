@@ -4,6 +4,7 @@ import dev.myanes.marvelheroes.data.datasources.HttpDataSource
 import dev.myanes.marvelheroes.data.datasources.Remote
 import dev.myanes.marvelheroes.data.repositories.HeroRepositoryImpl
 import dev.myanes.marvelheroes.domain.repositories.HeroRepository
+import dev.myanes.marvelheroes.domain.usecases.GetHeroDetailUseCase
 import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
 import dev.myanes.marvelheroes.presentation.screens.herodetail.HeroDetailViewModel
 import dev.myanes.marvelheroes.presentation.screens.herolist.HeroListViewModel
@@ -33,10 +34,11 @@ val dataModule = module {
 val domainModule = module {
     // UseCases
     factory { GetHeroesUseCase(heroRepository = get()) }
+    factory { GetHeroDetailUseCase(heroRepository = get()) }
 }
 
 val presentationModule = module {
     // ViewModels
     viewModel { HeroListViewModel(getHeroesUseCase = get()) }
-    viewModel { HeroDetailViewModel() }
+    viewModel { HeroDetailViewModel(getHeroDetailUseCase = get()) }
 }

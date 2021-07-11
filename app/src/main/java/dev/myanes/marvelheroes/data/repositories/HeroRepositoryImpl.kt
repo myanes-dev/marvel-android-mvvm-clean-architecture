@@ -10,7 +10,7 @@ class HeroRepositoryImpl(private val remoteDataSource: Remote) : HeroRepository 
     override suspend fun getLatestHeroes(): Either<Result.Error, List<Hero>> =
         remoteDataSource.getLatestHeroes()
 
-    override suspend fun getHeroDetail(): Either<Result.Error, Hero> =
-        remoteDataSource.getHeroDetail()
+    override suspend fun getHeroDetail(id: String): Either<Result.Error, Hero> =
+        remoteDataSource.getHeroDetail(id)
 
 }

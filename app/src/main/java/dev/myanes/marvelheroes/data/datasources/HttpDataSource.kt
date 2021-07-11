@@ -54,15 +54,24 @@ class HttpDataSource : Remote {
                 url{
                     path("characters")
                 }
+                parameter("orderBy", "-modified")
             }
             Either.Right(response.data.results.map { it.toDomainModel() })
         } catch (e: Exception) {
-            println("ERROR getLatestHeroes: $e");
             Either.Left(Result.Error.UnKnown)
         }
     }
 
-    override suspend fun getHeroDetail(): Either<Result.Error, Hero> {
-        TODO("Not yet implemented")
+    override suspend fun getHeroDetail(id: String): Either<Result.Error, Hero> {
+        return try {
+            val response = client.get<MarvelResponse<HeroesResponse>> {
+                url{
+                    path("characters", id)
+                }
+            }
+            Either.Right(response.data.results[0]?.toDomainModel())
+        } catch (e: Exception) {
+            Either.Left(Result.Error.UnKnown)
+        }
     }
 }

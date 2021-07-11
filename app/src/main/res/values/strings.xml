@@ -3,4 +3,8 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="no_results">No results</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="comics">Comics</string>
+    <string name="events">Events</string>
+    <string name="stories">Stories</string>
+    <string name="series">Series</string>
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/MARGIN_S"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    tools:layout_width="wrap_content">
+
+    <TextView
+        android:id="@+id/tvCounterLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textIsSelectable="true"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_size_M"
+        android:layout_marginBottom="@dimen/MARGIN_XS"
+        tools:text="Label" />
+
+    <TextView
+        android:id="@+id/tvCounterValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_L"
+        android:fontFamily="sans-serif-light"
+        android:textIsSelectable="true"
+        tools:text="10" />
+
+</LinearLayout>

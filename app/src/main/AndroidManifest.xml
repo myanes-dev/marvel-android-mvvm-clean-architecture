@@ -15,6 +15,7 @@
         android:theme="@style/Theme.Marvelheroes">
         <activity
             android:name=".presentation.screens.MainHostActivity"
+            android:theme="@style/Theme.Marvelheroes.NoActionBar"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

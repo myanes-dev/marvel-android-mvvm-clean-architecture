@@ -5,6 +5,7 @@ import dev.myanes.marvelheroes.data.datasources.Remote
 import dev.myanes.marvelheroes.data.repositories.HeroRepositoryImpl
 import dev.myanes.marvelheroes.domain.repositories.HeroRepository
 import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
+import dev.myanes.marvelheroes.presentation.screens.herodetail.HeroDetailViewModel
 import dev.myanes.marvelheroes.presentation.screens.herolist.HeroListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -37,4 +38,5 @@ val domainModule = module {
 val presentationModule = module {
     // ViewModels
     viewModel { HeroListViewModel(getHeroesUseCase = get()) }
+    viewModel { HeroDetailViewModel() }
 }

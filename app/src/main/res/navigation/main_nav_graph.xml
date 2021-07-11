@@ -17,10 +17,10 @@
     <fragment
         android:id="@+id/movie_detail_fragment"
         android:name="dev.myanes.marvelheroes.presentation.screens.herodetail.HeroDetailFragment"
-        android:label="item_detail"
+        android:label=""
         tools:layout="@layout/fragment_hero_detail">
         <argument
-            android:name="item_id"
+            android:name="hero_id"
             android:defaultValue=""
             app:argType="string" />
     </fragment>

@@ -62,35 +62,41 @@ class HeroDetailViewModelTest {
     @Test
     fun `hero details should be updated from server`() = runBlocking {
 
+        // Setup
         val fakeHero = FakeHeroes.VALID_ITEM
-
         whenever(getHeroDetailUseCase.invoke("1")).thenReturn(
             Either.Right(fakeHero)
         )
-
         val viewModel = HeroDetailViewModel(getHeroDetailUseCase)
+
+        // Recording
         viewModel.heroDetail.observeForever(detailObserver)
 
+        // Action
         viewModel.loadDetail("1")
 
+        // Check results
         verify(detailObserver).onChanged(fakeHero)
 
     }
 
     @Test
     fun `loading indicator should show while fetching hero details from server and hide afterwards`() = runBlocking {
+        // Setup
         val fakeHero = FakeHeroes.VALID_ITEM
-
         whenever(getHeroDetailUseCase.invoke("1")).thenReturn(
             Either.Right(fakeHero)
         )
-
         val viewModel = HeroDetailViewModel(getHeroDetailUseCase)
+
+        // Recording
         viewModel.heroDetail.observeForever(detailObserver)
         viewModel.loading.observeForever(observerLoading)
 
+        // Action
         viewModel.loadDetail("1")
 
+        // Check results
         val inOrder = inOrder(observerLoading, detailObserver)
         inOrder.verify(observerLoading).onChanged(true)
         inOrder.verify(detailObserver).onChanged(fakeHero)
@@ -99,17 +105,20 @@ class HeroDetailViewModelTest {
 
     @Test
     fun `no results and error ui should show when loading hero details fail`() = runBlocking {
-
+        // Setup
         whenever(getHeroDetailUseCase.invoke("FAIL")).thenReturn(
             Either.Left(Result.Error.UnKnown)
         )
-
         val viewModel = HeroDetailViewModel(getHeroDetailUseCase)
+
+        // Recording
         viewModel.isEmptyCase.observeForever(observerEmpty)
         viewModel.showError.observeForever(observerError)
 
+        // Action
         viewModel.loadDetail("FAIL")
 
+        // Check results
         val inOrder = inOrder(observerEmpty, observerError)
         inOrder.verify(observerEmpty).onChanged(false)
         inOrder.verify(observerError).onChanged(Result.Error.UnKnown)
@@ -118,19 +127,21 @@ class HeroDetailViewModelTest {
 
     @Test
     fun `no results ui should hide when loading hero details success`() = runBlocking {
-
+        // Setup
         val fakeHero = FakeHeroes.VALID_ITEM
-
         whenever(getHeroDetailUseCase.invoke("1")).thenReturn(
             Either.Right(fakeHero)
         )
-
         val viewModel = HeroDetailViewModel(getHeroDetailUseCase)
+
+        // Recording
         viewModel.isEmptyCase.observeForever(observerEmpty)
         viewModel.heroDetail.observeForever(detailObserver)
 
+        // Action
         viewModel.loadDetail("1")
 
+        // Check results
         val inOrder = inOrder(observerEmpty, detailObserver)
         inOrder.verify(observerEmpty).onChanged(false)
         inOrder.verify(detailObserver).onChanged(fakeHero)

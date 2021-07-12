@@ -64,7 +64,7 @@ class HeroListViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             _loading.value = true
             _isEmptyCase.value = false
-            _heroList.value = mutableListOf()
+            _heroList.value = emptyList()
 
             searchHeroesUseCase(query).fold(
                 error = {

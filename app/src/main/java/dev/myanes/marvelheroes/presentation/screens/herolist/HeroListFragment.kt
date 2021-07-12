@@ -127,7 +127,7 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
     }
 
     private fun doSearch(query: String) {
-        context?.toggleKeyBoard()
+        binding.searchBar.clearFocus()
         heroListViewModel.searchHeroes(query)
     }
 

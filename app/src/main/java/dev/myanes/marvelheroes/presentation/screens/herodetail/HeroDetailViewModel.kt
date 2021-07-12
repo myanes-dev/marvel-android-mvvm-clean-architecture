@@ -15,13 +15,13 @@ class HeroDetailViewModel(
     private val getHeroDetailUseCase: GetHeroDetailUseCase
 ) : ViewModel() {
 
-    private val _loading = MutableLiveData<Boolean>().apply { false }
+    private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
     private val _heroDetail = MutableLiveData<Hero>()
     val heroDetail: LiveData<Hero> get() = _heroDetail
 
-    private val _isEmptyCase = MutableLiveData<Boolean>().apply { false }
+    private val _isEmptyCase = MutableLiveData<Boolean>()
     val isEmptyCase: LiveData<Boolean> get() = _isEmptyCase
 
     private val _showError: SingleLiveEvent<Result.Error> = SingleLiveEvent()

@@ -5,13 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.navigation.fragment.findNavController
 import dev.myanes.marvelheroes.R
 import dev.myanes.marvelheroes.databinding.FragmentHeroListBinding
 import dev.myanes.marvelheroes.domain.Result
 import dev.myanes.marvelheroes.domain.models.Hero
+import dev.myanes.marvelheroes.presentation.utils.showKeyBoard
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -38,9 +42,50 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadObservers()
         initComponents()
+        loadObservers()
+        initListeners()
         loadData()
+    }
+
+    private fun initComponents() {
+
+        initBackButton()
+
+        binding.toolbarSearch.visibility = View.GONE
+        binding.searchBar.setIconifiedByDefault(false)
+        heroListAdapter = HeroListAdapter(this)
+        binding.recyclerView.adapter = heroListAdapter
+    }
+
+    private fun initBackButton() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (heroListViewModel.isSearchMode.value == true) {
+                heroListViewModel.leaveSearchMode()
+            } else {
+                isEnabled = false
+                activity?.onBackPressed()
+            }
+        }
+    }
+
+    private fun initListeners() {
+        with(binding) {
+            toolbarSearch.setNavigationOnClickListener { heroListViewModel.leaveSearchMode() }
+
+            searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    doSearch(query ?: "")
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?) = false
+            })
+            fabSearch.setOnClickListener {
+                searchBar.setQuery("", false)
+                heroListViewModel.enterSearchMode()
+            }
+        }
     }
 
     private fun loadObservers() {
@@ -56,9 +101,17 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
         }
 
         heroListViewModel.isEmptyCase.observe(viewLifecycleOwner) {
+            println("LOL isempty $it")
             when (it) {
                 true -> binding.tvNoResults.visibility = View.VISIBLE
                 false -> binding.tvNoResults.visibility = View.GONE
+            }
+        }
+
+        heroListViewModel.isSearchMode.observe(viewLifecycleOwner) {
+            when (it) {
+                true -> enterSearchMode()
+                false -> leaveSearchMode()
             }
         }
 
@@ -74,6 +127,10 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
         heroListViewModel.loadHeroes()
     }
 
+    private fun doSearch(query: String) {
+        heroListViewModel.searchHeroes(query)
+    }
+
     private fun updateData(list: List<Hero>) {
         heroListAdapter.updateData(list)
     }
@@ -82,9 +139,27 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
-    private fun initComponents() {
-        heroListAdapter = HeroListAdapter(this)
-        binding.recyclerView.adapter = heroListAdapter
+    private fun enterSearchMode() {
+        with(binding) {
+            toolbarSearch.visibility = View.VISIBLE
+            fabSearch.visibility = View.GONE
+
+            if (searchBar.query.isBlank()) {
+                searchBar.requestFocus()
+                context?.showKeyBoard()
+            }
+        }
+    }
+
+    private fun leaveSearchMode() {
+        with(binding) {
+            toolbarSearch.visibility = View.GONE
+            fabSearch.visibility = View.VISIBLE
+        }
+    }
+
+    private fun ola() {
+        // heroListViewModel.loading.value
     }
 
 

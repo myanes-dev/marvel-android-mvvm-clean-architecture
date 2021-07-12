@@ -7,8 +7,6 @@ import dev.myanes.marvelheroes.domain.Result
 import dev.myanes.marvelheroes.domain.models.FakeHeroes
 import dev.myanes.marvelheroes.domain.models.Hero
 import dev.myanes.marvelheroes.domain.usecases.GetHeroDetailUseCase
-import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
-import dev.myanes.marvelheroes.presentation.screens.herolist.HeroListViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

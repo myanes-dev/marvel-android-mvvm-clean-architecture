@@ -6,6 +6,7 @@ import dev.myanes.marvelheroes.data.repositories.HeroRepositoryImpl
 import dev.myanes.marvelheroes.domain.repositories.HeroRepository
 import dev.myanes.marvelheroes.domain.usecases.GetHeroDetailUseCase
 import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
+import dev.myanes.marvelheroes.domain.usecases.SearchHeroesUseCase
 import dev.myanes.marvelheroes.presentation.screens.herodetail.HeroDetailViewModel
 import dev.myanes.marvelheroes.presentation.screens.herolist.HeroListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -35,10 +36,11 @@ val domainModule = module {
     // UseCases
     factory { GetHeroesUseCase(heroRepository = get()) }
     factory { GetHeroDetailUseCase(heroRepository = get()) }
+    factory { SearchHeroesUseCase(heroRepository = get()) }
 }
 
 val presentationModule = module {
     // ViewModels
-    viewModel { HeroListViewModel(getHeroesUseCase = get()) }
+    viewModel { HeroListViewModel(getHeroesUseCase = get(), searchHeroesUseCase = get()) }
     viewModel { HeroDetailViewModel(getHeroDetailUseCase = get()) }
 }

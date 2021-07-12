@@ -14,6 +14,9 @@ class MainHostActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        setTheme(R.style.Theme_Marvelheroes_NoActionBar)
+
         super.onCreate(savedInstanceState)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)

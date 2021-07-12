@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/marvel_primary" />
+    <item android:drawable="@drawable/ic_launcher_foreground" android:width="300dp"
+        android:height="300dp" android:gravity="center" />
+    <item android:drawable="@drawable/marvel_logo" android:width="75dp"  android:height="30dp" android:gravity="center"/>
+</layer-list>

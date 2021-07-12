@@ -62,6 +62,23 @@ class HttpDataSource : Remote {
         }
     }
 
+    override suspend fun getHeroesByName(name: String): Either<Result.Error, List<Hero>> {
+        return try {
+            val response = client.get<MarvelResponse<HeroesResponse>> {
+                url{
+                    path("characters")
+                }
+                parameter("orderBy", "-modified")
+                parameter("nameStartsWith", name)
+            }
+            Either.Right(response.data.results.map { it.toDomainModel() })
+        } catch (e: Exception) {
+            Either.Left(Result.Error.UnKnown)
+        }
+    }
+
+
+
     override suspend fun getHeroDetail(id: String): Either<Result.Error, Hero> {
         return try {
             val response = client.get<MarvelResponse<HeroesResponse>> {

@@ -7,6 +7,7 @@ import dev.myanes.marvelheroes.domain.Result
 import dev.myanes.marvelheroes.domain.models.FakeHeroes
 import dev.myanes.marvelheroes.domain.models.Hero
 import dev.myanes.marvelheroes.domain.usecases.GetHeroesUseCase
+import dev.myanes.marvelheroes.domain.usecases.SearchHeroesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -31,6 +32,9 @@ class HeroListViewModelTest {
 
     @Mock
     lateinit var getHeroesUseCase: GetHeroesUseCase
+
+    @Mock
+    lateinit var searchHeroesUseCase: SearchHeroesUseCase
 
     @Mock
     lateinit var listObserver: Observer<List<Hero>>
@@ -69,7 +73,7 @@ class HeroListViewModelTest {
             Either.Right(fakeMovieList)
         )
 
-        val viewModel = HeroListViewModel(getHeroesUseCase)
+        val viewModel = HeroListViewModel(getHeroesUseCase, searchHeroesUseCase)
         viewModel.heroList.observeForever(listObserver)
 
         viewModel.loadHeroes()
@@ -86,7 +90,7 @@ class HeroListViewModelTest {
             Either.Right(fakeMovieList)
         )
 
-        val viewModel = HeroListViewModel(getHeroesUseCase)
+        val viewModel = HeroListViewModel(getHeroesUseCase, searchHeroesUseCase)
         viewModel.heroList.observeForever(listObserver)
         viewModel.loading.observeForever(observerLoading)
 
@@ -105,7 +109,7 @@ class HeroListViewModelTest {
             Either.Left(Result.Error.UnKnown)
         )
 
-        val viewModel = HeroListViewModel(getHeroesUseCase)
+        val viewModel = HeroListViewModel(getHeroesUseCase, searchHeroesUseCase)
         viewModel.isEmptyCase.observeForever(observerEmpty)
         viewModel.showError.observeForever(observerError)
 
@@ -126,7 +130,7 @@ class HeroListViewModelTest {
             Either.Right(fakeMovieList)
         )
 
-        val viewModel = HeroListViewModel(getHeroesUseCase)
+        val viewModel = HeroListViewModel(getHeroesUseCase, searchHeroesUseCase)
         viewModel.isEmptyCase.observeForever(observerEmpty)
         viewModel.heroList.observeForever(listObserver)
         viewModel.loadHeroes()

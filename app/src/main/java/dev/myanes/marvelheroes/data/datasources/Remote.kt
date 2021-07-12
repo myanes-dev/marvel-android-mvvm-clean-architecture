@@ -6,5 +6,6 @@ import dev.myanes.marvelheroes.domain.models.Hero
 
 interface Remote {
     suspend fun getLatestHeroes(): Either<Result.Error, List<Hero>>
+    suspend fun getHeroesByName(name: String): Either<Result.Error, List<Hero>>
     suspend fun getHeroDetail(id: String): Either<Result.Error, Hero>
 }

@@ -1,6 +1,6 @@
 # MARVEL HEROES: 
 # Android Kotlin + MVVM + Clean Architecture APP demo by myanes
-Sample Android app with implementarion for every layer of Clean Architecture:
+Sample Android app with implementation for every layer of Clean Architecture:
 
 ## Presentation <-> Domain <-> Data
 - Presentation: Screens/Views + ViewModels
@@ -55,7 +55,7 @@ and more
 
 It targets android > 6.0
 Sample APK is provided here:
-[apk_debug](https://github.com/myanes-dev)
+[apk_debug](sample/app-debug.apk)
 
 
 ## License 📄

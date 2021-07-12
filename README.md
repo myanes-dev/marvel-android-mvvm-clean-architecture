@@ -38,6 +38,9 @@ Shows name, image, description and counters of comics, events, stories and serie
 
 **Unit tests** are available for both List and Detail **ViewModels.**
 It verifies all events are handled and dispatched from/to ui fragments.
+It mocks usecases responses.
+It supports coroutines.
+
 Some examples:
 
 ```
@@ -55,6 +58,7 @@ and more
 
 It targets android > 6.0
 Sample APK is provided here:
+
 [apk_debug](sample/app-debug.apk)
 
 

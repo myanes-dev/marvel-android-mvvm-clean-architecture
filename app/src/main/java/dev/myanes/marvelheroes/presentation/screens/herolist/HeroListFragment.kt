@@ -158,10 +158,6 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
         }
     }
 
-    private fun ola() {
-        // heroListViewModel.loading.value
-    }
-
 
     override fun onHeroItemClick(hero: Hero) {
         val bundle = bundleOf("hero_id" to hero.id)

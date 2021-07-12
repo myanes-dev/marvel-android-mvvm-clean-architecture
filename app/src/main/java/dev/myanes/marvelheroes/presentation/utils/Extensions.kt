@@ -7,7 +7,7 @@ import com.squareup.picasso.Picasso
 
 
 fun ImageView.loadURL(url: String) {
-    if(url.isEmpty()) return
+    if (url.isEmpty()) return
     Picasso.get()
         .load(url)
         .centerCrop()
@@ -15,7 +15,7 @@ fun ImageView.loadURL(url: String) {
         .into(this);
 }
 
-fun Context.showKeyBoard() {
+fun Context.toggleKeyBoard() {
     val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS)
 }

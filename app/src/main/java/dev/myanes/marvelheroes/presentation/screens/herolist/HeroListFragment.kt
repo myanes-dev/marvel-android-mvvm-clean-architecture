@@ -9,13 +9,12 @@ import androidx.activity.addCallback
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.navigation.fragment.findNavController
 import dev.myanes.marvelheroes.R
 import dev.myanes.marvelheroes.databinding.FragmentHeroListBinding
 import dev.myanes.marvelheroes.domain.Result
 import dev.myanes.marvelheroes.domain.models.Hero
-import dev.myanes.marvelheroes.presentation.utils.showKeyBoard
+import dev.myanes.marvelheroes.presentation.utils.toggleKeyBoard
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -128,6 +127,7 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
     }
 
     private fun doSearch(query: String) {
+        context?.toggleKeyBoard()
         heroListViewModel.searchHeroes(query)
     }
 
@@ -146,7 +146,7 @@ class HeroListFragment : Fragment(), HeroListAdapter.HeroListListener {
 
             if (searchBar.query.isBlank()) {
                 searchBar.requestFocus()
-                context?.showKeyBoard()
+                context?.toggleKeyBoard()
             }
         }
     }
